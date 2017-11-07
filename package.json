@@ -1,0 +1,20 @@
+{
+  "name": "pstest",
+  "version": "1.0.0",
+  "description": "Test Script for Internet App",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Christine Wang",
+  "license": "ISC",
+  "dependencies": {
+    "webdriverio": "^4.8.0"
+  },
+  "devDependencies": {
+    "chai": "^4.1.2",
+    "mocha": "^4.0.1",
+    "wdio-dot-reporter": "0.0.9",
+    "wdio-mocha-framework": "^0.5.11"
+  }
+}
