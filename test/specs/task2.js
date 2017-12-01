@@ -2,7 +2,7 @@ var chai = require('chai');
 var assert = require('assert');
 
 describe('sortable tables', function() {
-  console.log("|==========[TASK_2]==========|");
+  console.log("|==========[TASK_2: SORTABLE TABLES]==========|");
   var tableStringArr = []; var row = []; var emailDomainArr = []; var editArr = []; var deleteArr = [];
   var validDomainArr = ['com', 'net', 'org', 'edu', 'gov'];
   var str; var boolToCheck;
@@ -10,7 +10,7 @@ describe('sortable tables', function() {
   var deleteURL = "http://the-internet.herokuapp.com/tables#delete";
   var numOfRows = 5; var numOfCols = 6; var numOfActions = 2;
   it('should open url and set up dictionaries for further tests', function () {
-    console.log("==========[TEST 1]==========");
+    console.log("==========[__2__TEST 1]==========");
     browser.url('http://the-internet.herokuapp.com/tables');
     var url = browser.getUrl();
     //Loop through table to populate string array for futher tests
@@ -51,7 +51,7 @@ describe('sortable tables', function() {
     console.log("[1] Opened URL and added table data to dict");
   });
   it('should have <td> elements with entries that are more than 0 chars', function(){
-    console.log("==========[TEST 2]==========");
+    console.log("==========[__2__TEST 2]==========");
     boolToCheck=true;
     for(var i=0; i<numOfRows; i++){
       row = tableStringArr[i];
@@ -83,7 +83,7 @@ describe('sortable tables', function() {
     console.log("[2] Verified all table data has str.length>0");
   });
   it('should have 6 <td> elements in each <tr> elements', function(){
-    console.log("==========[TEST 3]==========");
+    console.log("==========[__2__TEST 3]==========");
     boolToCheck = true;
     //Verify each row.length==6
     for(var i=0; i<numOfRows; i++){
@@ -98,7 +98,7 @@ describe('sortable tables', function() {
     console.log("[3] Verified all <tr> have 6 <td>");
   });
   it('should have 6 <th> elements in the <thead> row', function(){
-    console.log("==========[TEST 4]==========");
+    console.log("==========[__2__TEST 4]==========");
     boolToCheck = true;
     row = tableStringArr[0];
     //Go through all elements in <thead> and verify they are <th> tagName
@@ -113,7 +113,7 @@ describe('sortable tables', function() {
     console.log("[4] Verified <thead> row has 6 <th>");
   });
   it('should have 3rd column <td> elements(Email) that follow format [string @ string . string]', function(){
-    console.log("==========[TEST 5]==========");
+    console.log("==========[__2__TEST 5]==========");
     boolToCheck = true;
     //Skip header row, check all emails in body
     for(var i=1; i<numOfRows; i++){
@@ -138,7 +138,7 @@ describe('sortable tables', function() {
     console.log("[5] Verified email entries follow [string @ string . string] format");
   });
   it('should have 3rd column <td> elements(Email) should contain valid domain', function(){
-    console.log("==========[TEST 6]==========");
+    console.log("==========[__2__TEST 6]==========");
     boolToCheck = true;
     //Retrieve emailDomainArray from previous test
     for(var i=0; i<emailDomainArr.length; i++){
@@ -158,7 +158,7 @@ describe('sortable tables', function() {
     console.log("[6] Verified email domains are valid");
   });
   it('should have $ as 1st char for 4th column <td> element(Due)', function(){
-    console.log("==========[TEST 7]==========");
+    console.log("==========[__2__TEST 7]==========");
     boolToCheck = true;
     for(var i=1; i<numOfRows; i++){
       str = browser.getText(tableStringArr[i][3]);
@@ -172,12 +172,12 @@ describe('sortable tables', function() {
     console.log("[7] Due Amount has $ as first char");
   });
   it('should have 4th <td> element(Due) as a float rounded to 2nd decimal point', function(){
-    console.log("==========[TEST 8]==========");
+    console.log("==========[__2__TEST 8]==========");
     boolToCheck = true;
     for(var i=1; i<numOfRows; i++){
       str = browser.getText(tableStringArr[i][3]);
       //Check if value can be parsed
-      if(!Number.isNaN(parseFloat(str.replace('$', '')))){
+      if(Number.isNaN(parseFloat(str.replace('$', '')))){
         boolToCheck = false;
         console.log("Due amount in "+tableStringArr[i][3]+" does not contain a valid float");
       }
@@ -194,7 +194,7 @@ describe('sortable tables', function() {
   });
   it('should have 5th <td> element(WebSite) that follow format [http:// www. string .com]', function(){
     //Environment issues began at this point
-    console.log("==========[TEST 9]==========");
+    console.log("==========[__2__TEST 9]==========");
     var webSite = "http://www.";
     boolToCheck = true;
     for(var i=1; i<numOfRows; i++){
@@ -206,7 +206,7 @@ describe('sortable tables', function() {
       }
       var splitAtPeriod = str.split(".");
       //Check website contains 2 (.)
-      if(splitAtPeriod.length != 2){
+      if(splitAtPeriod.length != 3){
         boolToCheck = false;
         console.log("Website entry in "+tableStringArr[i][4]+" does not contain correct number of .");
       }
@@ -225,7 +225,7 @@ describe('sortable tables', function() {
     console.log("[9] Website is valid format");
   });
   it('should have 2 <a> elements in 6th column <td> element(Action)', function(){
-    console.log("==========[TEST 10]==========");
+    console.log("==========[__2__TEST 10]==========");
     boolToCheck = true;
     var actionArray;
     for(var i=1; i<numOfRows; i++){
@@ -265,8 +265,8 @@ describe('sortable tables', function() {
     chai.assert.isTrue(boolToCheck, 'All actions need to have two elements');
     console.log("[10] All Action entries contain 2 elements");
   });
-  it('1st <a> element of the 6th <td> element(Action) should lead to #edit', function(){
-    console.log("==========[TEST 11]==========");
+  it('should have 1st <a> element of the 6th <td> element(Action) that leads to #edit', function(){
+    console.log("==========[__2__TEST 11]==========");
     boolToCheck = true;
     for(var i=0; i<editArr.length; i++){
       browser.element(editArr[i]).click();
@@ -278,8 +278,8 @@ describe('sortable tables', function() {
     chai.assert.isTrue(boolToCheck, 'All edit links need to lead to #edit url');
     console.log("[11] All edit links lead to correct url");
   });
-  it('2nd <a> element of the 6th <td> element(Action) should lead to #delete', function(){
-    console.log("==========[TEST 12]==========");
+  it('should have 2nd <a> element of the 6th <td> element(Action) that leads to #delete', function(){
+    console.log("==========[__2__TEST 12]==========");
     boolToCheck = true;
     for(var i=0; i<deleteArr.length; i++){
       browser.element(deleteArr[i]).click();
@@ -290,5 +290,77 @@ describe('sortable tables', function() {
     }
     chai.assert.isTrue(boolToCheck, 'All delete links need to lead to #delete url');
     console.log("[12] All delete links lead to correct url");
+  });
+  it('should have clickable 6 <th> elements that add headerSortDown/Up classname', function(){
+    console.log("==========[__2__TEST 13]==========");
+    boolToCheck = true;
+    row = tableStringArr[0];
+    var arrayOfEntries; var headerElem; var sortedClassName; var headerText; var tableText;
+    //Go through all elements in <thead> and click twice. Ensure on both clicks, the array is correctly sorted
+    for(var i=0; i<numOfCols-1; i++){
+      //console.log("======INDEX: ",i,"======");
+      //console.log("[INITIAL]");
+      //WITHOUT CLICKING, STORE VALUES AND SORT
+      headerElem = browser.element(row[i]);
+      arrayOfEntries = [];
+      for(var j=1; j<numOfRows; j++){
+        tableText = browser.element(tableStringArr[j][i]).getText();
+        //Account for sorting due value with $
+        item = (i==3)? tableText.replace('$', ''): tableText;
+        arrayOfEntries.push(item);
+      }
+      if(i==3){
+        //Account for sorting due value with $
+        arrayOfEntries.sort(function(a,b){return a-b});
+      }
+      else{
+        arrayOfEntries.sort();
+      }
+      //console.log(arrayOfEntries);
+
+      //console.log("[FIRST CLICK]");
+      //FIRST CLICK, COMPARE IF EXPECTED IS SAME AS ACTUAL, AKA ARRAY IS SORTED CORRECTLY DESCENDING
+      headerElem.click();
+      for(var k=1; k<numOfRows; k++){
+        tableText = browser.element(tableStringArr[k][i]).getText();
+        //Account for sorting due value with $
+        item = (i==3)? tableText.replace('$', ''): tableText;
+
+        if(arrayOfEntries[k-1]!==item){
+          boolToCheck = false;
+          console.log(row[i]+" is not sorted correctly on first click");
+        }
+        //console.log(arrayOfEntries[k-1], item);
+      }
+      sortedClassName = $('.headerSortDown span').getText();
+      headerText = headerElem.getText();
+      if(sortedClassName != headerText){
+        boolToCheck = false;
+        console.log(row[i]+" is not working as a sortable header on first click");
+      }
+
+      //console.log("[SECOND CLICK]");
+      //SECOND CLICK, COMPARE IF EXPECTED IS SAME AS ACTUAL, AKA ARRAY IS SORTED CORRECTLY ASCENDING
+      headerElem.click();
+      arrayOfEntries.reverse();
+      for(var l=1; l<numOfRows; l++){
+        tableText = browser.element(tableStringArr[l][i]).getText();
+        //Account for sorting due value with $
+        item = (i==3)? tableText.replace('$', ''): tableText;
+        if(arrayOfEntries[l-1]!=item){
+          boolToCheck = false;
+          console.log(row[i]+" is not sorted correctly on second click");
+        }
+        //console.log(arrayOfEntries[l-1], item);
+      }
+      sortedClassName = $('.headerSortUp span').getText();
+      headerText = headerElem.getText();
+      if(sortedClassName != headerText){
+        boolToCheck = false;
+        console.log(row[i]+" is not working as a sortable header on second click");
+      }
+    }
+    chai.assert.isTrue(boolToCheck, 'All header elements need to be a headerSort class');
+    console.log("[13] Verified <thead> row is of sortable class and is sorting correctly <th>");
   });
 });
